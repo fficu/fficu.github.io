@@ -1,0 +1,45 @@
+jQuery(document).ready(function($) {
+
+	jQuery(".help-link").click(function() {
+		jQuery(this).parent().find("[id*='-help']").slideToggle();
+		return false
+	});
+
+	if( $('.geo').size() > 0 && $('.submitted').size() < 1 ){
+		initGeolocation();
+	}
+
+	//auto submit on first load when prepopulated
+	if( $('.submitted').size() < 1 && $('input#location').val()!=''  ){
+		$('#branch-search form').submit();		
+	}
+
+	function initGeolocation() {
+		if( navigator.geolocation ) {
+			// Call getCurrentPosition with success and failure callbacks
+			navigator.geolocation.getCurrentPosition( success, fail );
+		}	else {
+			//alert("Sorry, your browser does not support geolocation services.");
+		}
+	}
+
+	function success(position) {
+		//if( $('input#location').val()=='' || $('input#location').val()== $('input#location_orig').val() ){
+		if( $('input#location').val()==''){
+			$('input#location').val(position.coords.latitude +', '+ position.coords.longitude);
+			//document.forms.branchsearch.submit();
+			$('#branch-search form').submit();
+		}
+	}
+
+	function fail() {
+		// Could not obtain location
+	}
+
+	if( $('.submitted').size() > 0 && $('span#search_location').text()!=''){
+		//$('input#location').val( $('span#search_location').text() );	
+		//$('input#location').val('');
+	}
+
+	$('a.use-geo').click(function(){ $('input#location').val(''); initGeolocation(); return false });
+});

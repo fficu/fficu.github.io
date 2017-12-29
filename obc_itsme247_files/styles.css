@@ -1,0 +1,8 @@
+#branch-search, #branch-search-map, #branch-search-results, #branch-search-list { width: 99%; height: auto; }
+#branch-search .bouncing {background-color:#E8BFBF}
+#branch-search tr.branch {cursor:pointer;}
+#branch-search tr.branch:hover {background-color:#F4E1E1}
+#branch-search .debug {display:none;}
+#branch-search .message {color:#379c32; padding:.5em; font-weight:bold;}
+#branch-search .help {color:#808080; padding:2px; padding-left:1em; margin:3px;}
+
